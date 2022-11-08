@@ -16,7 +16,7 @@ public class RestController {
 	@Autowired
 	private OrderService orderService;
 	
-	@GetMapping("stock/{id}")
+	@GetMapping("/stock/{id}")
 	public String getStock(
 			@PathVariable("id") Integer id
 			) {

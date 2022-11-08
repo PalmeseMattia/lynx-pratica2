@@ -31,7 +31,7 @@ public class Book {
     private Integer stock;
     
     @ManyToMany
-    private List<OrderBook> orders;
+    private List<Order> orders;
 
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Data
 @Table(name="order_book")
-public class OrderBook {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "native")
