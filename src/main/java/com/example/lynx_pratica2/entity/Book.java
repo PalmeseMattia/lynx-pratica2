@@ -1,10 +1,9 @@
 package com.example.lynx_pratica2.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,24 +13,32 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Data
-@Table(name="book")
+@ToString
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "native")
     private Integer id;
 
-    @Column(name="title")
+    @Column
     private String title;
 
-    @Column(name="author")
+    @Column
     private String author;
 
-    @Column(name="stock")
+    @Column
     private Integer stock;
-    
-    @ManyToMany
-    private List<Order> orders;
+
+    @OneToMany(mappedBy = "book",fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<BookOrder> bookOrders;
+
+    public void addOrder(BookOrder bookOrder){
+        if (bookOrders == null) {
+            bookOrders=new ArrayList<>();
+        }
+        bookOrders.add(bookOrder);
+    }
 
 
 }
